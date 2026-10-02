@@ -3,8 +3,21 @@ import type { IncomingMessage, ServerResponse } from 'node:http'
 import { defineConfig } from 'vitest/config'
 import { handle } from './server/api'
 
+const pages = Boolean(process.env.GITHUB_PAGES)
+
 export default defineConfig({
-  base: process.env.GITHUB_PAGES ? './' : '/',
+  base: pages ? './' : '/',
+  build: pages
+    ? {
+        cssCodeSplit: false,
+        rollupOptions: {
+          output: {
+            format: 'iife',
+            inlineDynamicImports: true,
+          },
+        },
+      }
+    : undefined,
   plugins: [
     react(),
     {

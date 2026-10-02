@@ -6,13 +6,13 @@ A entrada começa pelo perfil (objetivos, condições, atividade e medidas) e se
 
 ## Ambiente de teste
 
-A página publicada fica em:
+Abra:
 
-https://cdn.jsdelivr.net/gh/mobzstudio/INB-app@cursor/maia-pagina-teste-dc9a/index.html
+https://htmlpreview.github.io/?https://github.com/mobzstudio/INB-app/blob/cursor/maia-pagina-teste-dc9a/index.html
 
-Esse endereço lê os arquivos do repositório. No GitHub Pages não há servidor, então a mesma agente roda no navegador. No computador, `npm run dev` continua usando a agente em `/api`.
+A página está no repositório, no branch `cursor/maia-pagina-teste-dc9a`. O GitHub não executa o servidor, então essa versão leva a mesma agente no navegador.
 
-O endereço https://mobzstudio.github.io/INB-app/ só passa a responder depois que o Pages for ligado em https://github.com/mobzstudio/INB-app/settings/pages (fonte: GitHub Actions).
+O endereço https://mobzstudio.github.io/INB-app/ só passa a responder depois que o Pages for ligado em https://github.com/mobzstudio/INB-app/settings/pages (fonte: GitHub Actions). Essa opção pede permissão de administrador do repositório.
 
 ## Acessar no computador
 
