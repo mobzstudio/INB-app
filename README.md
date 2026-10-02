@@ -1,14 +1,20 @@
 # INB Health — Maia
 
-O MVP é o chat da **Maia** com a paciente. Ela explica os marcadores e os exames do próprio registro. Não é um painel da equipe, não fecha diagnóstico e não faz receita.
+A Maia é a agente que lê o exame da pessoa. Ela monta os cards dos marcadores, diz por que cada um importa e se a evolução foi positiva ou negativa. No app, a pessoa vê esses cards e tira dúvidas com ela.
 
-A sessão de demonstração entra como **Helena Duarte**. Os números do chat e do painel saem de `src/data`.
+A entrada começa pelo perfil (objetivos, condições, atividade e medidas) e segue para o envio do exame. O exame de exemplo já traz 69 marcadores: 9 fora da faixa, 21 em atenção e 39 na faixa ótima.
 
-## Acessar
+## Ambiente de teste
 
-Online, no GitHub Pages do repositório: https://mobzstudio.github.io/INB-app/
+Abra:
 
-Na sua máquina:
+https://htmlpreview.github.io/?https://github.com/mobzstudio/INB-app/blob/cursor/maia-pagina-teste-dc9a/index.html
+
+A página está no repositório, no branch `cursor/maia-pagina-teste-dc9a`. O GitHub não executa o servidor, então essa versão leva a mesma agente no navegador.
+
+O endereço https://mobzstudio.github.io/INB-app/ só passa a responder depois que o Pages for ligado em https://github.com/mobzstudio/INB-app/settings/pages (fonte: GitHub Actions). Essa opção pede permissão de administrador do repositório.
+
+## Acessar no computador
 
 ```bash
 npm install
@@ -16,6 +22,4 @@ npm test
 npm run dev
 ```
 
-Abra o endereço que o Vite mostrar, em geral `http://localhost:5173`. A tela que abre já é a conversa.
-
-Perguntas úteis: “Como estão meus exames?”, “O que aconteceu com a minha pressão?”, “A hemoglobina glicada subiu?”.
+Abra o endereço do Vite, em geral http://localhost:5173.
