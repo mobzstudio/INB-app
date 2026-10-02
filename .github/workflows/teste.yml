@@ -6,14 +6,10 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
-
-concurrency:
-  group: maia-teste
-  cancel-in-progress: true
+  contents: read
 
 jobs:
-  publish:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -27,18 +23,3 @@ jobs:
         env:
           GITHUB_PAGES: 'true'
           VITE_MAIA_BROWSER: 'true'
-      - name: Publicar a página de teste
-        env:
-          TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          rm -rf /tmp/maia-site
-          mkdir /tmp/maia-site
-          cp -a dist/. /tmp/maia-site/
-          cd /tmp/maia-site
-          git init
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git config user.name "github-actions[bot]"
-          git checkout -b cursor/maia-pagina-teste-dc9a
-          git add .
-          git commit -m "Publica o ambiente de teste da Maia."
-          git -c http.extraheader="AUTHORIZATION: bearer ${TOKEN}" push --force "https://github.com/${GITHUB_REPOSITORY}.git" HEAD:cursor/maia-pagina-teste-dc9a
