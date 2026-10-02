@@ -2,7 +2,7 @@ name: Publicar a Maia
 
 on:
   push:
-    branches: [main]
+    branches: [main, cursor/maia-agente-marcadores-dc9a]
   workflow_dispatch:
 
 permissions:
