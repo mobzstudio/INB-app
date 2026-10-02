@@ -18,8 +18,7 @@ type Props = {
   onDraft: (value: string) => void
   onSend: (text?: string) => void
   onAction: (analysis: Analysis) => void
-  onOpenPatient: (patientId: string) => void
-  onClose: () => void
+  onFocusMarker: (markerId: string) => void
 }
 
 export function ChatPanel({
@@ -29,8 +28,7 @@ export function ChatPanel({
   onDraft,
   onSend,
   onAction,
-  onOpenPatient,
-  onClose,
+  onFocusMarker,
 }: Props) {
   const endRef = useRef<HTMLDivElement>(null)
   const fieldRef = useRef<HTMLTextAreaElement>(null)
@@ -46,12 +44,9 @@ export function ChatPanel({
           <Mark size={36} />
           <div>
             <strong>Maia</strong>
-            <span>Lendo a unidade Barra da Tijuca</span>
+            <span>Seus exames e marcadores</span>
           </div>
         </div>
-        <button type="button" className="ghost close-maia" onClick={onClose} aria-label="Fechar Maia">
-          Fechar
-        </button>
       </header>
       <div className="thread">
         {messages.map((message) => (
@@ -59,7 +54,7 @@ export function ChatPanel({
             {message.role === 'maia' ? <span className="who">Maia</span> : null}
             <p>{message.text}</p>
             {message.analysis ? (
-              <AnalysisCard analysis={message.analysis} onAction={onAction} onOpenPatient={onOpenPatient} />
+              <AnalysisCard analysis={message.analysis} onAction={onAction} onFocusMarker={onFocusMarker} />
             ) : null}
             {message.suggestions ? (
               <div className="chips">
@@ -75,7 +70,7 @@ export function ChatPanel({
         {thinking ? (
           <div className="bubble role-maia thinking" aria-live="polite">
             <span className="who">Maia</span>
-            <p>Estou cruzando a agenda com o prontuário…</p>
+            <p>Estou lendo os seus marcadores…</p>
           </div>
         ) : null}
         <div ref={endRef} />
@@ -95,7 +90,7 @@ export function ChatPanel({
           id="maia-draft"
           ref={fieldRef}
           rows={2}
-          placeholder="Pergunte sobre a agenda, um paciente ou um exame"
+          placeholder="Pergunte sobre um exame ou marcador seu"
           value={draft}
           onChange={(event) => onDraft(event.target.value)}
           onKeyDown={(event) => {

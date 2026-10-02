@@ -1,11 +1,7 @@
 export type Tone = 'good' | 'warn' | 'alert' | 'neutral'
 
-export type AppView = 'overview' | 'agenda' | 'patients' | 'patient' | 'indicators'
-
 export type AppAction = {
-  view: AppView
-  patientId?: string
-  filter?: 'today' | 'week' | 'noshow' | 'waiting' | 'altered'
+  markerId?: string
   label: string
 }
 
@@ -25,7 +21,7 @@ export type AnalysisBar = {
 
 export type AnalysisRow = {
   cells: string[]
-  patientId?: string
+  markerId?: string
 }
 
 export type Analysis = {
@@ -43,8 +39,4 @@ export type MaiaReply = {
   text: string
   analysis?: Analysis
   suggestions: string[]
-}
-
-export type MaiaContext = {
-  patientId?: string
 }

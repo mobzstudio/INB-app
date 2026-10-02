@@ -42,13 +42,11 @@ p { margin: 0; }
 .app {
   height: 100dvh;
   display: grid;
-  grid-template-columns: var(--sidebar) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr) 340px;
   background:
-    radial-gradient(900px 420px at 10% -10%, rgba(28, 122, 84, 0.08), transparent 60%),
+    radial-gradient(900px 420px at 0% -10%, rgba(28, 122, 84, 0.08), transparent 55%),
     var(--paper);
 }
-
-.app.maia-open { grid-template-columns: var(--sidebar) minmax(0, 1fr) var(--maia); }
 
 .sidebar {
   background: var(--deep);
@@ -286,18 +284,62 @@ tr.is-link:hover { background: #f7f4ee; }
 }
 
 .maia {
-  background: var(--card);
-  border-left: 1px solid var(--line);
+  background: transparent;
   display: flex;
   flex-direction: column;
   min-width: 0;
   min-height: 0;
 }
+.markers {
+  background: var(--card);
+  border-left: 1px solid var(--line);
+  overflow: auto;
+  padding: 22px 16px 28px;
+}
+.markers-head h2 { font-size: 28px; margin: 0 0 6px; }
+.markers-head p:last-child { color: var(--muted); line-height: 1.4; }
+.marker-list { list-style: none; margin: 18px 0 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.marker-card {
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 12px;
+  background: var(--paper);
+}
+.marker-list li.is-focus .marker-card { border-color: var(--green); box-shadow: 0 0 0 3px rgba(28, 122, 84, 0.15); }
+.marker-card header { display: flex; justify-content: space-between; gap: 8px; align-items: center; }
+.marker-card header span { font-size: 13px; color: var(--muted); }
+.marker-card strong {
+  display: block;
+  margin: 8px 0 2px;
+  font-family: Fraunces, serif;
+  font-size: 28px;
+  font-weight: 520;
+}
+.marker-card small { color: var(--muted); }
+.marker-card button, .visit-card button {
+  margin-top: 10px;
+  border: 0;
+  background: transparent;
+  color: var(--deep);
+  padding: 0;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.visit-card {
+  margin-top: 14px;
+  padding: 14px;
+  border-radius: 16px;
+  background: var(--deep);
+  color: #f6f1e7;
+}
+.visit-card .kicker { color: #b7d8c8; }
+.visit-card strong { display: block; font-family: Fraunces, serif; font-size: 22px; margin: 4px 0; }
+.visit-card button { color: #f6f1e7; }
 .maia-top {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 16px 16px 12px;
+  padding: 18px clamp(20px, 6vw, 72px) 14px;
   border-bottom: 1px solid var(--line);
 }
 .maia-id strong { display: block; font-family: Fraunces, serif; font-size: 20px; }
@@ -306,12 +348,12 @@ tr.is-link:hover { background: #f7f4ee; }
 .thread {
   flex: 1;
   overflow: auto;
-  padding: 16px;
+  padding: 22px clamp(20px, 6vw, 72px) 12px;
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
-.bubble { max-width: 100%; }
+.bubble { max-width: min(680px, 100%); }
 .bubble p { line-height: 1.45; }
 .role-user {
   align-self: flex-end;
@@ -358,7 +400,7 @@ tr.is-link:hover { background: #f7f4ee; }
   display: grid;
   grid-template-columns: 1fr auto;
   gap: 8px;
-  padding: 12px;
+  padding: 12px clamp(20px, 6vw, 72px) 16px;
   border-top: 1px solid var(--line);
   align-items: end;
 }
@@ -373,45 +415,10 @@ tr.is-link:hover { background: #f7f4ee; }
 }
 .send:disabled { opacity: 0.45; cursor: default; }
 
-@media (max-width: 1180px) {
-  .app, .app.maia-open { grid-template-columns: 84px minmax(0, 1fr); }
-  .brand div, .sidebar nav span, .maia-launch span, .me div { display: none; }
-  .sidebar { padding-inline: 10px; }
-  .maia-launch, .me { justify-content: center; }
-  .maia {
-    position: fixed;
-    inset: 12px 12px 12px 96px;
-    border: 1px solid var(--line);
-    border-radius: 20px;
-    box-shadow: var(--shadow);
-    z-index: 5;
-  }
-  .close-maia { display: inline-flex; }
-  .split, .metric-grid { grid-template-columns: 1fr 1fr; }
-  h1 { font-size: 34px; }
-}
-
-@media (max-width: 760px) {
-  .app, .app.maia-open { grid-template-columns: 1fr; }
-  .sidebar {
-    position: fixed;
-    z-index: 6;
-    left: 0; right: 0; bottom: 0;
-    height: 72px;
-    flex-direction: row;
-    align-items: center;
-    padding: 8px;
-    gap: 6px;
-  }
-  .brand, .me { display: none; }
-  .sidebar nav { flex-direction: row; flex: 1; }
-  .sidebar nav button { flex-direction: column; font-size: 11px; padding: 6px; gap: 4px; }
-  .sidebar nav span, .maia-launch span { display: block; }
-  .maia-launch { width: auto; margin-top: 0; padding: 8px; }
-  .maia-launch svg { display: none; }
-  main { padding-bottom: 84px; }
-  .page { padding: 22px 16px 32px; }
-  .maia { inset: 0 0 72px 0; border-radius: 0; border: 0; }
-  .split, .metric-grid, .agenda-list button, .people button, .static-row { grid-template-columns: 1fr; }
-  .agenda-list button, .static-row { gap: 4px; }
+@media (max-width: 860px) {
+  .app { grid-template-columns: 1fr; grid-template-rows: auto minmax(0, 1fr); }
+  .markers { order: -1; border-left: 0; border-bottom: 1px solid var(--line); max-height: 38dvh; }
+  .marker-list { flex-direction: row; overflow: auto; }
+  .marker-card { min-width: 220px; }
+  .maia-top, .thread, .composer { padding-left: 16px; padding-right: 16px; }
 }

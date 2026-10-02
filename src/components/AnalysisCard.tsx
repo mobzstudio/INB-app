@@ -3,10 +3,10 @@ import type { Analysis } from '../maia/types'
 type Props = {
   analysis: Analysis
   onAction: (analysis: Analysis) => void
-  onOpenPatient: (patientId: string) => void
+  onFocusMarker: (markerId: string) => void
 }
 
-export function AnalysisCard({ analysis, onAction, onOpenPatient }: Props) {
+export function AnalysisCard({ analysis, onAction, onFocusMarker }: Props) {
   const max = analysis.bars ? Math.max(...analysis.bars.map((bar) => bar.value)) : 0
   const min = analysis.bars ? Math.min(...analysis.bars.map((bar) => bar.value)) : 0
   const span = Math.max(max - min, max * 0.28, 1)
@@ -59,8 +59,8 @@ export function AnalysisCard({ analysis, onAction, onOpenPatient }: Props) {
               {analysis.rows.map((row, index) => (
                 <tr
                   key={`${row.cells.join('-')}-${index}`}
-                  className={row.patientId ? 'is-link' : undefined}
-                  onClick={row.patientId ? () => onOpenPatient(row.patientId as string) : undefined}
+                  className={row.markerId ? 'is-link' : undefined}
+                  onClick={row.markerId ? () => onFocusMarker(row.markerId as string) : undefined}
                 >
                   {row.cells.map((cell, cellIndex) => (
                     <td key={`${cell}-${cellIndex}`} className={toneClass(cell)}>
@@ -75,7 +75,7 @@ export function AnalysisCard({ analysis, onAction, onOpenPatient }: Props) {
       ) : null}
       {analysis.action ? (
         <button type="button" className="text-button" onClick={() => onAction(analysis)}>
-          Abrir {analysis.action.label}
+          {analysis.action.label}
         </button>
       ) : null}
     </article>
@@ -84,8 +84,8 @@ export function AnalysisCard({ analysis, onAction, onOpenPatient }: Props) {
 
 function toneClass(cell: string) {
   const value = cell.toLowerCase()
-  if (value === 'falta' || value === 'alterado') return 'cell-alert'
-  if (value === 'aguardando' || value === 'pendente') return 'cell-warn'
-  if (value === 'confirmada' || value === 'realizada' || value === 'normal') return 'cell-good'
+  if (value.includes('acima') || value === 'falta' || value === 'alterado') return 'cell-alert'
+  if (value.includes('em alta') || value === 'aguardando' || value === 'pendente') return 'cell-warn'
+  if (value.includes('estável') || value === 'estavel' || value === 'confirmada' || value === 'realizada' || value === 'normal') return 'cell-good'
   return undefined
 }

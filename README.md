@@ -1,11 +1,17 @@
-# INB Health
+# INB Health — Maia
 
-MVP da plataforma com a **Maia**, assistente que conversa com a equipe e analisa a agenda, os exames e o prontuário da unidade.
+O MVP é o chat da **Maia** com a paciente. Ela explica os marcadores e os exames do próprio registro. Não é um painel da equipe, não fecha diagnóstico e não faz receita.
 
-Os números da conversa e das telas saem da mesma base em `src/data`. A Maia não fecha diagnóstico e não prescreve: ela lê o que já foi registrado e abre a tela correspondente.
+A sessão de demonstração entra como **Helena Duarte**. Os números do chat e do painel saem de `src/data`.
+
+## Acessar
 
 ```bash
 npm install
 npm test
 npm run dev
 ```
+
+Abra o endereço que o Vite mostrar, em geral `http://localhost:5173`. A tela que abre já é a conversa.
+
+Perguntas úteis: “Como estão meus exames?”, “O que aconteceu com a minha pressão?”, “A hemoglobina glicada subiu?”.
