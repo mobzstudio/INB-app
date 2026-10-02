@@ -28,6 +28,8 @@ jobs:
           GITHUB_PAGES: 'true'
           VITE_MAIA_BROWSER: 'true'
       - name: Publicar a página de teste
+        env:
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           rm -rf /tmp/maia-site
           mkdir /tmp/maia-site
@@ -39,4 +41,6 @@ jobs:
           git checkout -b cursor/maia-pagina-teste-dc9a
           git add .
           git commit -m "Publica o ambiente de teste da Maia."
-          git push --force "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" HEAD:cursor/maia-pagina-teste-dc9a
+          git remote add origin "https://github.com/${GITHUB_REPOSITORY}.git"
+          git config http.https://github.com/.extraheader "AUTHORIZATION: bearer ${TOKEN}"
+          git push --force origin HEAD:cursor/maia-pagina-teste-dc9a
