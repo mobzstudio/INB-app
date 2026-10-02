@@ -481,7 +481,7 @@ function evolution(patient: Patient): MaiaReply {
         { label: 'Exames alterados', value: String(altered.length), tone: altered.length ? 'alert' : 'good' },
         {
           label: next ? 'Próximo horário' : 'Retorno',
-          value: next ? `${formatDay(next.date)} ${next.time}` : 'Sem horário',
+          value: next ? (next.date === TODAY ? `Hoje ${next.time}` : `${formatDay(next.date)} ${next.time}`) : 'Sem horário',
           tone: next ? 'good' : 'warn',
         },
       ],

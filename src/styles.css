@@ -335,8 +335,8 @@ tr.is-link:hover { background: #f7f4ee; }
     var(--card);
 }
 .analysis-head p:last-child { color: var(--muted); margin-top: 6px; }
-.analysis .metric-grid { margin: 12px 0; }
-.analysis .metric strong { font-size: 22px; }
+.analysis .metric-grid { margin: 12px 0; grid-template-columns: 1fr 1fr; }
+.analysis .metric strong { font-size: 22px; line-height: 1.15; }
 .bars { display: flex; flex-direction: column; gap: 10px; margin: 4px 0 12px; }
 .bar-label { display: flex; justify-content: space-between; gap: 8px; font-size: 13px; margin-bottom: 4px; }
 .bar-track { height: 8px; background: #efeae1; border-radius: 99px; overflow: hidden; }
@@ -346,15 +346,14 @@ tr.is-link:hover { background: #f7f4ee; }
 .bar-fill.tone-good { background: var(--green); }
 .in-page { padding-bottom: 16px; }
 .text-button {
-  display: flex;
-  justify-content: space-between;
+  display: block;
   width: 100%;
   margin-top: 8px;
   background: var(--deep);
   color: #f6f1e7;
   border-color: var(--deep);
+  text-align: left;
 }
-.text-button span { color: #d5e7de; }
 .composer {
   display: grid;
   grid-template-columns: 1fr auto;

@@ -75,8 +75,7 @@ export function AnalysisCard({ analysis, onAction, onOpenPatient }: Props) {
       ) : null}
       {analysis.action ? (
         <button type="button" className="text-button" onClick={() => onAction(analysis)}>
-          Abrir na plataforma
-          <span>{analysis.action.label}</span>
+          Abrir {analysis.action.label}
         </button>
       ) : null}
     </article>
