@@ -6,6 +6,10 @@ A sessão de demonstração entra como **Helena Duarte**. Os números do chat e 
 
 ## Acessar
 
+Online, no GitHub Pages do repositório: https://mobzstudio.github.io/INB-app/
+
+Na sua máquina:
+
 ```bash
 npm install
 npm test
