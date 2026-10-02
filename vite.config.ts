@@ -4,7 +4,7 @@ import { defineConfig } from 'vitest/config'
 import { handle } from './server/api'
 
 export default defineConfig({
-  base: process.env.GITHUB_PAGES ? '/INB-app/' : '/',
+  base: process.env.GITHUB_PAGES ? './' : '/',
   plugins: [
     react(),
     {
