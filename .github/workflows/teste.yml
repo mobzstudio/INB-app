@@ -41,6 +41,4 @@ jobs:
           git checkout -b cursor/maia-pagina-teste-dc9a
           git add .
           git commit -m "Publica o ambiente de teste da Maia."
-          git remote add origin "https://github.com/${GITHUB_REPOSITORY}.git"
-          git config http.https://github.com/.extraheader "AUTHORIZATION: bearer ${TOKEN}"
-          git push --force origin HEAD:cursor/maia-pagina-teste-dc9a
+          git -c http.extraheader="AUTHORIZATION: bearer ${TOKEN}" push --force "https://github.com/${GITHUB_REPOSITORY}.git" HEAD:cursor/maia-pagina-teste-dc9a
